@@ -1,0 +1,104 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>Backlift app admin site</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- CSS
+  ================================================== -->
+  <!-- Le styles -->  
+  
+<!--   <link href="bootstrap.css" rel="stylesheet">  
+  <link href="prettify.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css">
+ -->
+
+  <link href="/admin/styles/bootstrap/bootstrap.css" rel="stylesheet">
+  <link href="/admin/styles/bootstrap/responsive.css" rel="stylesheet">
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/admin/styles/admin.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="/admin/styles/morris.css">
+    
+  <!-- Scripts
+  ================================================== -->
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.1/bootstrap.min.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="/admin/scripts/morris.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js"></script>
+
+  <script>
+    // setup namespace, preload some data from server
+    
+    var parseFetched = function(data){
+      return data.length==1 ? data[0] : false
+    }
+    var App = {}
+    App.preloaded = {}
+    App.preloaded.current_user = parseFetched( [{{$ get /backlift/auth/currentuser/ }}] );
+    App.preloaded.current_app = parseFetched( [{{$ get /backlift/admin/currentapp/ }}] );
+    App.preloaded.signups = parseFetched( [{{$ get /backlift/data/signups/ }}] );
+    App.preloaded.historydata = parseFetched( [{{$ get /backlift/analytics/history }}] );
+    App.preloaded.currentdata = parseFetched( [{{$ get /backlift/analytics/current }}] );
+    
+  </script>
+
+</head>
+
+<!-- the page before auth has been verified -->
+<body class="hidden">
+
+  <div class="container">
+      <div class="row">
+        <ul class="nav nav-tabs" id="nav">
+          <li id="metrics" class="active"><a href="#metrics"><i class="icon-dashboard"></i> Metrics</a></li>
+          <li id="signups"><a href="#signups"><i class="icon-user"></i> Signups</a></li>
+          <li id="logout" class="secondary"><a href="/backlift/auth/logout"><i class="icon-signout"></i> Log out</a></li>
+        </ul>
+      </div>
+  </div>
+
+  <div id="middle">
+    <div class="container" id="container">
+      <!-- content will be here -->
+    </div>
+  </div>
+
+  <script src="/admin/templates/metrics.js"></script>
+  <script src="/admin/scripts/metrics.js"></script>
+
+  <script src="/admin/templates/signups.js"></script>
+  <script src="/admin/scripts/signups.js"></script>
+
+  <script src="/admin/scripts/router.js"></script>
+
+  <script src="/admin/scripts/admin.js"></script>
+
+</body>
+</html>

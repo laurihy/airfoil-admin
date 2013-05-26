@@ -1,0 +1,35 @@
+<div class="row titlerow">
+  <div class="span12">
+    <ul class="pull-right unstyled subnav">
+      <li id="absolute"><a href="#metrics/absolute">Export</a></li>
+    </ul>
+    <h2>Signups</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <table class="table table-striped" style="width: 100%;">
+      <tr>
+        <th class="small">#</th>
+        <th>Created</th>
+        <th>Email</th>
+        <th>Variant</th>
+        <th class="small"></th>
+      </tr>
+      
+      {{# each signups }}
+      
+        <tr>
+          <td class="small">{{@index}}</td>
+          <td>{{created}}</td>
+          <td>{{email}}</td>
+          <td>{{variant}}</td>
+          <td style="text-align: right"><a class="del" data-id="{{id}}" style="cursor: pointer;">Delete</a></td>
+        </tr>
+
+      {{/each}}
+
+    </table>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login to Backlift App</title>
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.1/css/bootstrap.min.css" rel="stylesheet">  
+
+    <style>
+    	body {
+    		background: url('/admin/img/graphpaper.jpg');
+    	}
+    	.wrapper {
+    		width: 300px;
+    		margin: 175px auto 0 auto;
+        position: relative;
+    	}
+    	.wrapper img {
+    		margin-left: -400px;
+        margin-top: -450px;
+        max-width: none;
+        position: absolute;
+        z-index: -1;
+    	}
+    	.box {
+        padding: 35px 20px;
+    		background: #fff;
+    		border: 1px solid #ddd;
+    		border-radius: 5px;
+        box-shadow: 0px 1px 3px 1px #ddd;
+        text-align: center;
+    	}
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .input-block-level {
+        margin-bottom: 20px !important;
+      }
+
+      label {
+        font-size: 0.9em !important;
+      }
+
+    </style>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.1/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.2.1/purl.min.js"></script>
+    <script type="text/javascript">
+      
+      var appMeta = [{{$ get /backlift/admin/meta }}]
+      appMeta = appMeta.length>0 ? appMeta[0] : []
+
+      $('document').ready(function(){
+
+        newaction = $('form').attr('action')+'?_next='+$.url().param('_next');
+        $('form').attr('action', newaction);
+
+        app_id = $.url().attr('host').split('.')[0];
+        singlesignon_url = '/backlift/singlesignon/'+appMeta['id']
+        dplogin_url = '//'+appMeta['baseurl']+'/backlift/auth/oauth_login/dropbox?_next='+singlesignon_url
+        $('a#dropboxlogin').attr('href', dplogin_url)
+
+
+      })
+
+    </script>
+
+  </head>
+  <body>
+  	<div class="wrapper">
+  		<img src="/admin/img/tric-draw.png" />
+  		
+      <h1>Log In</h1>
+  		<div class="box">
+        <p>This section requires login</p>
+  			<a id="dropboxlogin" class="btn btn-primary btn-large">Login with Backlift</a>
+  		</div>
+      <p>
+        <a href="/" class="pull-left muted">Back to the site</a>
+      </p>
+  		
+  	</div>
+  </body>
+</html>
